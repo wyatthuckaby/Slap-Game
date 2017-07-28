@@ -33,11 +33,11 @@ function initGame(){
         new Player(false, 100, 0, [   
             new Weapon("Slap",-1, "assets/slap.png"), 
             new Weapon ("Sword", -50, 0)
-        ], "Whayyy", 3),
+        ], "Jim", 3),
         new Player( true, 100, 0, [   
             new Weapon("Slap",-1, "assets/slap.png"), 
             new Weapon ("Sword", -50, 0)
-        ], "I.Robot", 3),
+        ], "ITtttts JONNNY", 3),
         
     );
 }
@@ -49,6 +49,8 @@ function render(){
     //their wep
     var twTemplate = '';
 
+    var yTemplate = '';
+    var tTemplate = '';
     for (var i = 0; i < players.length; i++){
         var isOpon = players[i].computer;
         //check opponet
@@ -57,6 +59,7 @@ function render(){
             the drawing context so happens to be on the opponets side
             this time. 
             */
+            //Player Weapons
             for (var j = 0; j < players[i].weapons.length; j++){
                 if (players[i].weapons[j].image === 0){
                     players[i].weapons[j].image = "assets/no-texture.png";
@@ -64,25 +67,62 @@ function render(){
 
                 //console.log("Rendering: " + players[i].weapons[j].Id);
                 twTemplate += `
-                <img class="wep-img" src="${players[i].weapons[j].image}" >
+                <a href="#" onclick = "${players[i].weapons[j].Id}" >
+                    <img class="img-responsive wep-img" src="${players[i].weapons[j].image}" >
+                </a>
                 `;
             }
+
+            //player render
+
+            /*
+            Something to keep in mind when rendering with robohash is its php based.
+            this means we can edit and modify the results of the image easily without much
+            effort. 
+            */
+
+            if (players[i].image != 0){
+                tTemplate += `<img class="img-responsive play-img"
+                src="${players[i].image}">`;
+            } else {
+                tTemplate += `<img class="img-responsive play-img"
+                src="https://robohash.org/${players[i].playername}.png?size=256x256;set=set4">`;
+            }
         } else {
+
+            //Player Weapons
             for (var j = 0; j < players[i].weapons.length; j++){
                 if (players[i].weapons[j].image === 0){
                     players[i].weapons[j].image = "assets/no-texture.png";
+                    
                 }
                 //console.log("Rendering: " + players[i].weapons[j].Id);
                 ywTemplate += `
-                <img class="wep-img" src="${players[i].weapons[j].image}" >
+                <a href="#" onclick = "${players[i].weapons[j].Id}" >
+                    <img class="img-responsive wep-img" src="${players[i].weapons[j].image}" >
+                </a>
                 `;
-            }           
+            }
+
+            //player render
+            if (players[i].image != 0){
+                yTemplate += `<img class="img-responsive play-img"
+                src="${players[i].image}">`;
+            } else {
+                yTemplate += `<img class="img-responsive play-img"
+                src="https://robohash.org/${players[i].playername}.png?size=256x256;set=set4">`;
+            }     
         }
     }
 
     //find:render/wep
     document.getElementById("yourwep").innerHTML = ywTemplate;
     document.getElementById("theirwep").innerHTML = twTemplate;
+
+
+    //find:render/player
+    document.getElementById("yourPlayer").innerHTML = yTemplate;
+    document.getElementById("theirPlayer").innerHTML = tTemplate;
 }
 
 initGame();
