@@ -5,6 +5,7 @@
 //it can also heal.
 //find:Weapon
 var WeaponID = 1;
+var playerID = 1;
 var Weapon = function(wepname, health, image){
     this.wepname = wepname || "I have no name, so no thirst for blood.";
     this.health = health;
@@ -20,11 +21,11 @@ var Player = function(computer, health, image,weapons, playername, power){
     this.image = image;
     this.power = power || 2;
     this.weapons = weapons;
+    this.Id = playerID++;
 }
 
 var players = [];
 
-//we need an Init function; this is where we can 
 
 
 //find:initGame
@@ -40,6 +41,16 @@ function initGame(){
         ], "ITtttts JONNNY", 3),
         
     );
+}
+
+//find:getopponet
+//returns the reference the the player object that is opposing the argument
+function getOpponet(againced){
+    for (var i = 0; i < players.length; i++){
+        if (againced.Id != players[i].Id){
+            return players[i];
+        }
+    }
 }
 
 //find:render
@@ -76,7 +87,7 @@ function render(){
             //player health
             tTemplate += `
                 <div class="progress yourHealthBar">
-                    <div class="progress-bar progress-bar-success" style="width:100%">
+                    <div class="progress-bar progress-bar-success" style="width:${players[i].health}%">
                         100
                     </div>
                 </div>
@@ -105,9 +116,11 @@ function render(){
                     players[i].weapons[j].image = "assets/no-texture.png";
 
                 }
+                
                 //console.log("Rendering: " + players[i].weapons[j].Id);
+                // function applyWeapon(sender, opponet, wepid)
                 ywTemplate += `
-                <a href="#" onclick = "${players[i].weapons[j].Id}" >
+                <a href="#" onclick = "applyWeapon(${players[i].Id}, ${getOpponet(players[i].Id).Id}, ${players[i].weapons[j].Id});" >
                     <img class="img-responsive wep-img" src="${players[i].weapons[j].image}" >
                 </a>
                 `;
@@ -118,7 +131,7 @@ function render(){
 
             yTemplate += `
                 <div class="progress yourHealthBar">
-                    <div class="progress-bar progress-bar-success" style="width:100%">
+                    <div class="progress-bar progress-bar-success" style="width:${players[i].health}%">
                     100
                     </div>
                 </div>
@@ -143,6 +156,51 @@ function render(){
     //find:render/player
     document.getElementById("yourPlayer").innerHTML = yTemplate;
     document.getElementById("theirPlayer").innerHTML = tTemplate;
+}
+
+
+//find:applyweapon
+function applyWeapon(sender, opponet, wepid){
+    //get the weapon in question and apply it to the correct player.
+
+    var damage=0;
+
+    for (var i = 0; i < players.length; i++){
+        if (players[i].Id === sender){
+            //now parse the weapons and look for the correct one
+            for (var j = 0; j < players[i].weapons.length; j++){
+                if (players[i].weapons[j].Id == wepid){
+                    //now apply that damage multiplied by the player's power
+                    /*
+                    this works by multiplying the weapon by the constant provided
+                    by the player's power. I want to make this a little more unpredictable.
+                    so i might add a random function to this as a secondary multiple to make
+                    the results less predicatble.
+
+                    example of how this works:
+
+                    damage = 2 * -3;
+                    
+
+                    i really want to do it like this though
+                    damamge = (2 * -3) + ((Math.rand() * 5) - 5) 
+                    */
+                    damage = players[i].power * players[i].weapons[j].health;
+                }
+            }
+        }
+    }
+    //search the array to find the opponet
+    for (var i = 0; i < players.length; i++) {
+        // var element = players[i];
+        if (players[i].Id === opponet) {
+            //now take this user and apply the damage
+            players[i].health += damage; //remember negative damage still subtracts
+                console.log(players[i].health);
+        }
+    }
+
+    render();
 }
 
 initGame();
