@@ -73,6 +73,15 @@ function render(){
                 `;
             }
 
+            //player health
+            tTemplate += `
+                <div class="progress yourHealthBar">
+                    <div class="progress-bar progress-bar-success" style="width:100%">
+                        100
+                    </div>
+                </div>
+            `;
+
             //player render
 
             /*
@@ -86,7 +95,7 @@ function render(){
                 src="${players[i].image}">`;
             } else {
                 tTemplate += `<img class="img-responsive play-img"
-                src="https://robohash.org/${players[i].playername}.png?size=256x256;set=set4">`;
+                src="https://robohash.org/${players[i].playername}.png?size=256x256;set=set2">`;
             }
         } else {
 
@@ -94,7 +103,7 @@ function render(){
             for (var j = 0; j < players[i].weapons.length; j++){
                 if (players[i].weapons[j].image === 0){
                     players[i].weapons[j].image = "assets/no-texture.png";
-                    
+
                 }
                 //console.log("Rendering: " + players[i].weapons[j].Id);
                 ywTemplate += `
@@ -104,13 +113,24 @@ function render(){
                 `;
             }
 
+
+            //player health
+
+            yTemplate += `
+                <div class="progress yourHealthBar">
+                    <div class="progress-bar progress-bar-success" style="width:100%">
+                    100
+                    </div>
+                </div>
+            `;
+
             //player render
             if (players[i].image != 0){
                 yTemplate += `<img class="img-responsive play-img"
                 src="${players[i].image}">`;
             } else {
                 yTemplate += `<img class="img-responsive play-img"
-                src="https://robohash.org/${players[i].playername}.png?size=256x256;set=set4">`;
+                src="https://robohash.org/${players[i].playername}.png?size=256x256;set=set2">`;
             }     
         }
     }

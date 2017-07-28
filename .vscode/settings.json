@@ -1,0 +1,8 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+    "workbench.colorCustomizations": {
+        "editor.background": "#181818",
+        "sideBar.background": "#181818",
+        "activityBar.background": "#181818"
+    }
+}

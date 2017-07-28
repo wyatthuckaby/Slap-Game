@@ -1,12 +1,15 @@
 .wep-img{
 
-    padding-left: 5%;
+    padding-right: 50%;
     max-width: 100px;
     height: auto;
 
 
 }
 
+.gameboard{
+    background-color: #181818;
+}
 .play-img{
-    
+
 }
