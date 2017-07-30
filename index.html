@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,57 +8,49 @@
 
 
     <!-- Link Stylesheets -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" >
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="game.css" rel="stylesheet">
 
 
 
     <title>Slap Game</title>
 </head>
+
 <body>
-    
     <div class="container">
-        <div class="col-md-2"></div>
 
+        <div class="row header">
 
-        <!--Your Wep -->
-        <div class="col-md-1" id="yourwep">
-
-
-        </div>
-
-
-
-        <!--Primary Game Board -->
-        <div class="col-md-6">
-            <div class="row gameboard">
-
-                <!-- you -->
-                <div class="col-md-4" id="yourPlayer">
+            <div class="col-md-2"></div>
+            <div class="col-md-3" id="player">
+                <!--Our player  -->
+                <div class="row">
+                    <h3 id="playerHealth"></h3>
                 </div>
-
-                <!-- distance -->
-                <div class="col-md-4">
-                    <!-- <h1> pad1 </h1> -->
-                </div>
-
-                <!-- Opponent -->
-                <div class="col-md-4" id="theirPlayer">
+                <div class="row">
+                    <img src="http://placehold.it/200x200">
                 </div>
             </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-3" id="enemy">
+                <!--Our Enemy  -->
+                <!--Our player  -->
+                <div class="row">
+                    <h3 id="enemyHealth"></h3>
+                </div>
+                <div class="row">
+                    <img src="http://placehold.it/200x200">
+                </div>
+            </div>
+            <div class="col-md-2"></div>
         </div>
-
-        <!--Opponent Wep -->
-        <div class="col-md-1" id="theirwep">
-
-
-        </div>
-
-
-
-        <div class="col-md-2"></div>
+        <!-- <div class="row footer">
+            <button type="button" onclick="damage(10);">Slap</button>
+            <button type="button" onclick="damage(20);">Punch</button>
+            <button type="button" onclick="damage(30);">Kick</button>
+        </div> -->
     </div>
-
     <script src="game.js"></script>
 </body>
+
 </html>
