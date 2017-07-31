@@ -29,8 +29,8 @@ function initGame() {
         new Weapon("Sheild", 5, 30),
         new Weapon("Sword", 50, 10)
     );
-
     players.push(
+
         new Player(false, "Fred", 100, 1.2, 1.1, [weapons[0], weapons[1]]),
         new Player(true, "Fred", 100, 1.2, 1.1, [weapons[0], weapons[1]])
     );
