@@ -51,3 +51,5 @@
 
 // initGame();
 // update();
+
+var gameController = new GameController();

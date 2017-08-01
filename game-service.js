@@ -50,19 +50,26 @@ function GameService() {
     //find functions
     function findEnemyPlayer() {
         for (var i = players.length - 1; i >= 0; i--) {
-            players[i].isEnemy && return players[i];
+            if (players[i].isEnemy) {
+            	return players[i];
+            } 
         }
     }
 
     function findHeroPlayer() {
         for (var i = players.length - 1; i >= 0; i--) {
-            (!players[i].isEnemy) && return players[i];
+            if (!players[i].isEnemy){
+            	return players[i];
+            }
         }
     }
 
     function findPlayerById(sid) {
         for (var i = players.length - 1; i >= 0; i--) {
-            (players[i].Id === sid) && return players[i];
+            if (players[i].Id === sid)
+            {
+            		return players[i];
+            }
         }
     }
 
@@ -81,7 +88,7 @@ function GameService() {
 
     //win/loss getter
     this.getWinLoss = function getWinLoss(){
-
+    	return winLoss;
     }
     //its pretty clear who the source and target is.
     //BUT we still need to make sure we deal damage
