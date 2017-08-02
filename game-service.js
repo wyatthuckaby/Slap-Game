@@ -84,14 +84,14 @@ function GameService() {
 
     //AI engine is designed in such a way that on the
     //fly difficulty adjustments are possible.
-    this.setDifficulty = function setDifficulty(diff){
-        if (diff === currentDiff) 
+    this.setDifficulty = function setDifficulty(diff) {
+        if (diff === currentDiff)
             return;
 
-        if (diff === "normal"){
-            dipcount-=10;
-        } else if (diff === "hard"){
-            dipcount+=10; //ya done messed up AAron.
+        if (diff === "normal") {
+            dipcount -= 10;
+        } else if (diff === "hard") {
+            dipcount += 10; //ya done messed up AAron.
 
 
         } else {
@@ -209,7 +209,7 @@ function GameService() {
             dipcount++;
         } else AIintensity = 1 + dipcount;
 
-        console.log (AIintensity);
+        console.log(AIintensity);
         //now use the AI intensity to change how the AI reacts
         //to the choices of the enemy player weapons.
 

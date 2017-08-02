@@ -87,8 +87,8 @@ function GameController() {
 
 
         //now to render the enemy
-        if (enemyPlayer.image != "http://placehold.it/200x200"){
-        enemyTemplate += `
+        if (enemyPlayer.image != "http://placehold.it/200x200") {
+            enemyTemplate += `
             <div class="row">
                 <div class="progress healthbar">
                     <div class="progress-bar" role="progressbar"  style="width: ${(enemyPlayer.health/100) * 100}%">  
@@ -105,7 +105,7 @@ function GameController() {
 
 
         } else {
-           enemyTemplate += `
+            enemyTemplate += `
             <div class="row">
                 <div class="progress healthbar">
                     <div class="progress-bar" role="progressbar"  style="width: ${(enemyPlayer.health/100) * 100}%">  
@@ -120,7 +120,7 @@ function GameController() {
             <div class="row">
         `
 
-         
+
         }
 
 
@@ -139,7 +139,7 @@ function GameController() {
 
 
     //sets difficulty
-    this.setDifficulty = function setDifficulty(diff){
+    this.setDifficulty = function setDifficulty(diff) {
         gameService.setDifficulty(diff);
         render(false);
     }
