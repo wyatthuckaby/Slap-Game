@@ -1,8 +1,10 @@
 .playerStyle{
 	background-color: black;
+	margin: 0 auto;
 }
 
 .health{
+	background-color: black;
 	color: #ededed;
 }
 
@@ -12,4 +14,8 @@
 
 .buttons{
 	margin-top: 4%;
+}
+
+.healthbar{
+	margin-top: 2%;
 }

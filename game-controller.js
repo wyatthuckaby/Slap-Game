@@ -53,17 +53,21 @@ function GameController() {
     	console.log(heroPlayer.health);
     	heroTemplate += `
             <div class="row">
-           	 	<h3 class="health">${heroPlayer.health}</h3>
+           	 	<div class="progress healthbar">
+                    <div class="progress-bar" role="progressbar"  style="width: ${(heroPlayer.health/100) * 100}%">  
+                        <span>${heroPlayer.health}</span>
+                    </div>
+                </div>
             </div>
             <div class="row">
-            	<img class="playerStyle" src="https://robohash.org/${heroPlayer.name}.png?size=200x200">
+            	<img class="img-responsive playerStyle" src="https://robohash.org/${heroPlayer.name}.png?size=200x200">
             </div>
 
             <div class="row">
     	`;
 
 
-        heroTemplate += `<div class="buttons">`;
+        heroTemplate += `<div class="text-center buttons">`;
         if (!hideButtons){
         	for (var i = heroPlayer.weapons.length - 1; i >= 0; i--) {
         		//for now we will just make some buttons. destined to change.
@@ -86,10 +90,14 @@ function GameController() {
 
     	enemyTemplate += `
             <div class="row">
-           	 	<h3  class="health">${enemyPlayer.health}</h3>
+           	 	<div class="progress healthbar">
+                    <div class="progress-bar" role="progressbar"  style="width: ${(enemyPlayer.health/100) * 100}%">  
+                        <span>${enemyPlayer.health}</span>
+                    </div>
+                </div>
             </div>
             <div class="row">
-            	<img  class="playerStyle" src="https://robohash.org/${enemyPlayer.name}.png?size=200x200">
+            	<img  class="img-responsive playerStyle " src="https://robohash.org/${enemyPlayer.name}.png?size=200x200">
             </div>
 
             <div class="row">

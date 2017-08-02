@@ -71,9 +71,8 @@ function GameService() {
 
     function findPlayerById(sid) {
         for (var i = players.length - 1; i >= 0; i--) {
-            if (players[i].Id === sid)
-            {
-            		return players[i];
+            if (players[i].Id === sid){
+            	return players[i];
             }
         }
     }
@@ -124,7 +123,10 @@ function GameService() {
         //eh += hP.weps[w].health * (P * D)
         // function Player(name, isEnemy, health, power, defense, image)
 
-        enemyPlayer.health += Math.floor(heroPlayer.weapons[wep].health * (heroPlayer.power * enemyPlayer.defense));
+        enemyPlayer.health += Math.floor(
+            (heroPlayer.weapons[wep].health * 
+                (heroPlayer.power * enemyPlayer.defense)) *
+                Math.random() );
 
         if (enemyPlayer.health < 0) {
             //Cool! player won.
@@ -196,18 +198,20 @@ function GameService() {
 
         //final AI decision
         if (AIintensity > 5) {
-            heroPlayer.health += Math.floor(hardestWep.health * (enemyPlayer.power * heroPlayer.defense));
+            heroPlayer.health += Math.floor((hardestWep.health * (enemyPlayer.power * heroPlayer.defense))
+                * Math.random());
             if (heroPlayer.health < 0) {
                 //DED
-                health = 0;
+                heroPlayer.health = 0;
                 winLoss = "You Lost!";
                 console.log("Enemy Won!");
             }
         } else {
-            heroPlayer.health += Math.floor(easiestWep.health * (enemyPlayer.power * heroPlayer.defense));
+            heroPlayer.health += Math.floor((easiestWep.health * (enemyPlayer.power * heroPlayer.defense))
+                *Math.random());
             if (heroPlayer.health < 0) {
                 //DED - But really easily....
-                health = 0;
+                heroPlayer.health = 0;
                 winLoss = "You Lost!";
                 console.log("Enemy Won!");
             }
