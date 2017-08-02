@@ -111,6 +111,8 @@ function GameService() {
             findEnemyPlayer().power += 10;
             findEnemyPlayer().defense += 1;
 
+            findEnemyPlayer().image = "https://robohash.org/bigbuns.png?size=200x200";
+
             //just so i can make a spinal tap reference lets turn this up to 11.
             dipcount += 11;
         }
