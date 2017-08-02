@@ -56,7 +56,7 @@ function GameController() {
            	 	<h3>${heroPlayer.health}</h3>
             </div>
             <div class="row">
-            	<img src="${heroPlayer.image}">
+            	<img class="playerStyle" src="https://robohash.org/${heroPlayer.name}.png?size=200x200">
             </div>
 
             <div class="row">
@@ -86,7 +86,7 @@ function GameController() {
            	 	<h3>${enemyPlayer.health}</h3>
             </div>
             <div class="row">
-            	<img src="${enemyPlayer.image}">
+            	<img  class="playerStyle" src="https://robohash.org/${enemyPlayer.name}.png?size=200x200">
             </div>
 
             <div class="row">
