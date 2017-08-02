@@ -87,7 +87,6 @@ function GameController() {
 
 
         //now to render the enemy
-
         enemyTemplate += `
             <div class="row">
                 <div class="progress healthbar">
@@ -117,5 +116,10 @@ function GameController() {
         render(false);
     }
 
+
+    //sets difficulty
+    this.setDifficulty = function setDifficulty(diff){
+        gameService.setDifficulty(diff);
+    }
     render(false);
 }

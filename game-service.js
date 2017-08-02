@@ -9,6 +9,7 @@ function GameService() {
     //AI Private Variables
     var dipcount = 0;
 
+    var currentDiff = "normal";
 
     //CONSTRUCTORS
     function Player(name, isEnemy, health, power, defense, image) {
@@ -78,6 +79,42 @@ function GameService() {
     }
 
 
+
+
+
+    //AI engine is designed in such a way that on the
+    //fly difficulty adjustments are possible.
+    this.setDifficulty = function setDifficulty(diff){
+        if (diff === currentDiff) 
+            return;
+
+        if (diff === "normal"){
+            dipcount-=10;
+        } else if (diff === "hard"){
+            dipcount+=10; //ya done messed up AAron.
+
+
+        } else {
+            //making impossible the default because im hardcore like that.
+            //I decided that if the user dares press this button it will make all
+            //the other games harder until they reload the game.
+            //so lets boost power and increase defence on the enemy.
+
+
+            //sinister message
+            swal({
+                title: "May death rain upon them....",
+                text: "You have no idea what you just did.",
+                type: "warning"
+            });
+
+            findEnemyPlayer().power += 10;
+            findEnemyPlayer().defense += 1;
+
+            //just so i can make a spinal tap reference lets turn this up to 11.
+            dipcount += 11;
+        }
+    }
     this.resetGame = function resetGame() {
         //iterate through all the players and reset health.
         for (var i = players.length - 1; i >= 0; i--) {
@@ -170,7 +207,7 @@ function GameService() {
             dipcount++;
         } else AIintensity = 1 + dipcount;
 
-
+        console.log (AIintensity);
         //now use the AI intensity to change how the AI reacts
         //to the choices of the enemy player weapons.
 
