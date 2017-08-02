@@ -1,3 +1,15 @@
 .playerStyle{
+	background-color: black;
+}
+
+.health{
+	color: #ededed;
+}
+
+.header{
 	background-color: grey;
+}
+
+.buttons{
+	margin-top: 4%;
 }

@@ -53,7 +53,7 @@ function GameController() {
     	console.log(heroPlayer.health);
     	heroTemplate += `
             <div class="row">
-           	 	<h3>${heroPlayer.health}</h3>
+           	 	<h3 class="health">${heroPlayer.health}</h3>
             </div>
             <div class="row">
             	<img class="playerStyle" src="https://robohash.org/${heroPlayer.name}.png?size=200x200">
@@ -62,6 +62,8 @@ function GameController() {
             <div class="row">
     	`;
 
+
+        heroTemplate += `<div class="buttons">`;
         if (!hideButtons){
         	for (var i = heroPlayer.weapons.length - 1; i >= 0; i--) {
         		//for now we will just make some buttons. destined to change.
@@ -77,13 +79,14 @@ function GameController() {
         }
 
     	heroTemplate += `</div>`;
+        heroTemplate += `</div>`;
 
 
     	//now to render the enemy
 
     	enemyTemplate += `
             <div class="row">
-           	 	<h3>${enemyPlayer.health}</h3>
+           	 	<h3  class="health">${enemyPlayer.health}</h3>
             </div>
             <div class="row">
             	<img  class="playerStyle" src="https://robohash.org/${enemyPlayer.name}.png?size=200x200">
