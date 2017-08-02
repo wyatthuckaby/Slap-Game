@@ -5,6 +5,11 @@ function GameService() {
     //Win\Loss
     var winLoss;
 
+
+    //AI Private Variables
+    var dipcount = 0;
+
+
     //CONSTRUCTORS
     function Player(name, isEnemy, health, power, defense, image) {
         this.name = name;
@@ -13,7 +18,7 @@ function GameService() {
         this.power = power;
         this.defense = defense;
         this.weapons = [];
-
+        this.image = image;
 
         //ID between 1-2000
         this.Id = Math.floor(Math.random() * (2000 - 1) + 1);
@@ -74,6 +79,18 @@ function GameService() {
     }
 
 
+    this.resetGame = function resetGame(){
+        //iterate through all the players and reset health.
+        for (var i = players.length - 1; i >= 0; i--) {
+            players[i].health = 100;
+        }
+
+        //reset winloss
+        winLoss = "nothing";
+
+        //reset AI
+        dipcount = 0;
+    }
     /*END PRIVATE*/
 
 
@@ -107,7 +124,7 @@ function GameService() {
         //eh += hP.weps[w].health * (P * D)
         // function Player(name, isEnemy, health, power, defense, image)
 
-        enemyPlayer.health += heroPlayer.weapons[wep].health * (heroPlayer.power * enemyPlayer.defense);
+        enemyPlayer.health += Math.floor(heroPlayer.weapons[wep].health * (heroPlayer.power * enemyPlayer.defense));
 
         if (enemyPlayer.health < 0) {
             //Cool! player won.
@@ -116,6 +133,7 @@ function GameService() {
             enemyPlayer.health = 0;
         }
 
+        this.enemyMove();
 
     }
 
@@ -130,8 +148,9 @@ function GameService() {
     TODO 4 neuron neral network
     */
 
-    //AI Private Variables
-    var dipcount = 0;
+
+    //see dipcount variable
+
 
     this.enemyMove = function enemyMove() {
         var enemyPlayer = findEnemyPlayer();
@@ -155,8 +174,9 @@ function GameService() {
 
         //for now (as we are still developing this AI) just going off
         //the minimum and max weapons.
-        var hardestWep = Math.max(enemyPlayer.weapons.health);
-        var easiestWep = Math.min(enemyPlayer.weapons.health);
+
+        var hardestWep = enemyPlayer.weapons[0].health;
+        var easiestWep = enemyPlayer.weapons[1].health;
 
 
         for (var i = enemyPlayer.weapons.length - 1; i >= 0; i--) {
@@ -175,8 +195,8 @@ function GameService() {
 
 
         //final AI decision
-        if (intensity > 5) {
-            heroPlayer.health += hardestWep.health * (enemyPlayer.power * heroPlayer.defense);
+        if (AIintensity > 5) {
+            heroPlayer.health += Math.floor(hardestWep.health * (enemyPlayer.power * heroPlayer.defense));
             if (heroPlayer.health < 0) {
                 //DED
                 health = 0;
@@ -184,7 +204,7 @@ function GameService() {
                 console.log("Enemy Won!");
             }
         } else {
-            heroPlayer.health += easiestWep.health * (enemyPlayer.power * heroPlayer.defense);
+            heroPlayer.health += Math.floor(easiestWep.health * (enemyPlayer.power * heroPlayer.defense));
             if (heroPlayer.health < 0) {
                 //DED - But really easily....
                 health = 0;

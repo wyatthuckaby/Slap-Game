@@ -9,6 +9,7 @@
 
     <!-- Link Stylesheets -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.6/sweetalert2.css" />
     <link href="game.css" rel="stylesheet">
 
 
@@ -50,6 +51,10 @@
             <button type="button" onclick="damage(30);">Kick</button>
         </div> -->
     </div>
+
+
+    <!-- Include a polyfill for ES6 Promises (optional) for IE11 and Android browser -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.6/sweetalert2.js"></script>
     <script src="game-service.js"></script>
     <<script src="game-controller.js"></script>
     <script src="game.js"></script>
