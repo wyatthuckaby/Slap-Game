@@ -56,29 +56,29 @@ function GameService() {
     function findEnemyPlayer() {
         for (var i = players.length - 1; i >= 0; i--) {
             if (players[i].isEnemy) {
-            	return players[i];
-            } 
+                return players[i];
+            }
         }
     }
 
     function findHeroPlayer() {
         for (var i = players.length - 1; i >= 0; i--) {
-            if (!players[i].isEnemy){
-            	return players[i];
+            if (!players[i].isEnemy) {
+                return players[i];
             }
         }
     }
 
     function findPlayerById(sid) {
         for (var i = players.length - 1; i >= 0; i--) {
-            if (players[i].Id === sid){
-            	return players[i];
+            if (players[i].Id === sid) {
+                return players[i];
             }
         }
     }
 
 
-    this.resetGame = function resetGame(){
+    this.resetGame = function resetGame() {
         //iterate through all the players and reset health.
         for (var i = players.length - 1; i >= 0; i--) {
             players[i].health = 100;
@@ -103,8 +103,8 @@ function GameService() {
 
 
     //win/loss getter
-    this.getWinLoss = function getWinLoss(){
-    	return winLoss;
+    this.getWinLoss = function getWinLoss() {
+        return winLoss;
     }
     //its pretty clear who the source and target is.
     //BUT we still need to make sure we deal damage
@@ -124,9 +124,9 @@ function GameService() {
         // function Player(name, isEnemy, health, power, defense, image)
 
         enemyPlayer.health += Math.floor(
-            (heroPlayer.weapons[wep].health * 
+            (heroPlayer.weapons[wep].health *
                 (heroPlayer.power * enemyPlayer.defense)) *
-                Math.random() );
+            Math.random());
 
         if (enemyPlayer.health < 0) {
             //Cool! player won.
@@ -198,8 +198,8 @@ function GameService() {
 
         //final AI decision
         if (AIintensity > 5) {
-            heroPlayer.health += Math.floor((hardestWep.health * (enemyPlayer.power * heroPlayer.defense))
-                * Math.random());
+            heroPlayer.health += Math.floor((hardestWep.health * (enemyPlayer.power * heroPlayer.defense)) *
+                Math.random());
             if (heroPlayer.health < 0) {
                 //DED
                 heroPlayer.health = 0;
@@ -207,8 +207,8 @@ function GameService() {
                 console.log("Enemy Won!");
             }
         } else {
-            heroPlayer.health += Math.floor((easiestWep.health * (enemyPlayer.power * heroPlayer.defense))
-                *Math.random());
+            heroPlayer.health += Math.floor((easiestWep.health * (enemyPlayer.power * heroPlayer.defense)) *
+                Math.random());
             if (heroPlayer.health < 0) {
                 //DED - But really easily....
                 heroPlayer.health = 0;
