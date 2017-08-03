@@ -152,7 +152,7 @@ function GameService() {
     //ID. BUT we arn't completely out of luck
     //here whereas the getter returns an exact clone
     //of the players object. 
-    //this means we can pass the wep the player decided
+    //this means we can pass the wep the player decided 
     //to use inside its own object. 
     this.dealDamage = function dealDamage(wep) {
         var enemyPlayer = findEnemyPlayer();
@@ -164,7 +164,7 @@ function GameService() {
 
         enemyPlayer.health += Math.floor(
             (heroPlayer.weapons[wep].health *
-                (heroPlayer.power * enemyPlayer.defense)) *
+                (heroPlayer.power / enemyPlayer.defense)) *
             Math.random());
 
         if (enemyPlayer.health < 0) {
@@ -237,7 +237,7 @@ function GameService() {
 
         //final AI decision
         if (AIintensity > 5) {
-            heroPlayer.health += Math.floor((hardestWep.health * (enemyPlayer.power * heroPlayer.defense)) *
+            heroPlayer.health += Math.floor((hardestWep.health * (enemyPlayer.power / heroPlayer.defense)) *
                 Math.random());
             if (heroPlayer.health < 0) {
                 //DED
@@ -246,7 +246,7 @@ function GameService() {
                 console.log("Enemy Won!");
             }
         } else {
-            heroPlayer.health += Math.floor((easiestWep.health * (enemyPlayer.power * heroPlayer.defense)) *
+            heroPlayer.health += Math.floor((easiestWep.health * (enemyPlayer.power / heroPlayer.defense)) *
                 Math.random());
             if (heroPlayer.health < 0) {
                 //DED - But really easily....
