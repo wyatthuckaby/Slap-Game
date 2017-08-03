@@ -215,8 +215,7 @@ function GameService() {
 
         enemyPlayer.health += Math.floor(
             (heroPlayer.weapons[wep].health *
-                ((heroPlayer.power + addModsPower()
-                    )/ enemyPlayer.defense)) *
+                ((heroPlayer.power)/ enemyPlayer.defense)) *
             Math.random());
 
         if (enemyPlayer.health < 0) {
@@ -289,7 +288,7 @@ function GameService() {
 
         //final AI decision
         if (AIintensity > 5) {
-            heroPlayer.health += Math.floor((hardestWep.health * (enemyPlayer.power / (heroPlayer.defense + addModsDefence()))) *
+            heroPlayer.health += Math.floor((hardestWep.health * (enemyPlayer.power / heroPlayer.defense)) *
                 Math.random());
             if (heroPlayer.health < 0) {
                 //DED
@@ -298,7 +297,7 @@ function GameService() {
                 console.log("Enemy Won!");
             }
         } else {
-            heroPlayer.health += Math.floor((easiestWep.health * (enemyPlayer.power / (heroPlayer.defense + addModsDefence()))) *
+            heroPlayer.health += Math.floor((easiestWep.health * (enemyPlayer.power / heroPlayer.defense )) *
                 Math.random());
             if (heroPlayer.health < 0) {
                 //DED - But really easily....
