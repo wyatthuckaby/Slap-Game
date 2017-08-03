@@ -11,6 +11,8 @@ function GameService() {
 
     var currentDiff = "normal";
 
+
+
     //CONSTRUCTORS
     function Player(name, isEnemy, health, power, defense, image) {
         this.name = name;
@@ -31,6 +33,15 @@ function GameService() {
         this.image = image;
     }
 
+
+    function Mod(name, healthOffset, powerOffset, defenceOffset){
+        this.name = name;
+        this.healthOffset = healthOffset;
+        this.powerOffset = powerOffset;
+        this.defenceOffset = defenceOffset;
+    }
+
+    var mods = [];
     var players = [];
 
     function init() {
@@ -80,6 +91,46 @@ function GameService() {
 
 
 
+
+    //returns the new changes with current mods
+    //all factored into eachother. with averages
+
+    function addModsDefence(){
+        var average = 0;
+        for (var i = mods.length - 1; i >= 0; i--) {
+            average += mods[i].defenceOffset; 
+        }
+
+        return average / mods.length;
+    }
+
+    function addModsPower(){
+        var average = 0;
+        for (var i = mods.length - 1; i >= 0; i--) {
+            average += mods[i].powerOffset; 
+        }
+
+        return average / mods.length;
+    }
+
+
+
+    this.enableMod = function enableMod(mod) {
+        if (mod === "powerboost"){
+            mods.push(new Mod("powerboost", 0,4,0));
+        }
+    }
+
+    this.disableMod = function disableMod(mod) {
+        if (mod === "powerboost"){
+            for (var i = mods.length - 1; i >= 0; i--) {
+                if (mods[i].name === "powerboost"){
+                    mods = mods.slice (i);
+                    break;
+                }
+            }
+        }      
+    }
 
 
     //AI engine is designed in such a way that on the
@@ -164,7 +215,8 @@ function GameService() {
 
         enemyPlayer.health += Math.floor(
             (heroPlayer.weapons[wep].health *
-                (heroPlayer.power / enemyPlayer.defense)) *
+                ((heroPlayer.power + addModsPower()
+                    )/ enemyPlayer.defense)) *
             Math.random());
 
         if (enemyPlayer.health < 0) {
@@ -237,7 +289,7 @@ function GameService() {
 
         //final AI decision
         if (AIintensity > 5) {
-            heroPlayer.health += Math.floor((hardestWep.health * (enemyPlayer.power / heroPlayer.defense)) *
+            heroPlayer.health += Math.floor((hardestWep.health * (enemyPlayer.power / (heroPlayer.defense + addModsDefence()))) *
                 Math.random());
             if (heroPlayer.health < 0) {
                 //DED
@@ -246,7 +298,7 @@ function GameService() {
                 console.log("Enemy Won!");
             }
         } else {
-            heroPlayer.health += Math.floor((easiestWep.health * (enemyPlayer.power / heroPlayer.defense)) *
+            heroPlayer.health += Math.floor((easiestWep.health * (enemyPlayer.power / (heroPlayer.defense + addModsDefence()))) *
                 Math.random());
             if (heroPlayer.health < 0) {
                 //DED - But really easily....

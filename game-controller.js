@@ -143,5 +143,13 @@ function GameController() {
         gameService.setDifficulty(diff);
         render(false);
     }
+
+    this.enableMod = function enableMod(mod) {
+        gameService.enableMod(mod);
+    }
+
+    this.disableMod = function disableMod(mod) {
+        gameService.disableMod(mod);
+    }
     render(false);
 }
